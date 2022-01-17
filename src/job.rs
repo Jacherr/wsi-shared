@@ -6,3 +6,11 @@ pub enum JobResult {
     Image((usize, Vec<u8>)),
     Error((usize, ProcessingError))
 }
+impl JobResult {
+    pub fn id(&self) -> usize {
+        match self {
+            JobResult::Image(id) => id.0,
+            JobResult::Error(id) => id.0
+        }
+    }
+}
