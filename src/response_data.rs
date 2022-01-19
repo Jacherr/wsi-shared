@@ -1,9 +1,9 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, Debug)]
-pub struct ImageInfo<'a> {
+pub struct ImageInfo {
     pub file_size_bytes: usize,
-    pub mime_type: &'a str,
+    pub mime_type: String,
     pub dimensions: (u32, u32),
     pub colour_space: String,
     pub frames: Option<usize>,
