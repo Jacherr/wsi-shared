@@ -75,3 +75,8 @@ impl From<std::io::Error> for ProcessingError {
         ProcessingError::ScriptError(input.to_string())
     }
 }
+impl From<reqwest::Error> for ProcessingError {
+    fn from(input: reqwest::Error) -> ProcessingError {
+        ProcessingError::Other(input.to_string())
+    }
+}
