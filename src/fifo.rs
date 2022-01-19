@@ -1,6 +1,6 @@
 use serde::{Serialize, Deserialize};
 
-use crate::query_params::{AudioQueryParams, BlurQueryParams, CaptionQueryParams, ConstructGifQueryParams, GhostQueryParams, GifSpeedQueryParams, HeartLocketTextQueryParams, ImageMagickEvalQueryParams, MemeQueryParams, MotivateQueryParams, NoneQuery, OverlayQueryParams, PixelateQueryParams, ResizeQueryParams, RotateQueryParams, SetLoopQueryParams};
+use crate::query_params::{AudioQueryParams, BlurQueryParams, CaptionQueryParams, ConstructGifQueryParams, GhostQueryParams, GifSpeedQueryParams, HeartLocketTextQueryParams, ImageMagickEvalQueryParams, MemeQueryParams, MotivateQueryParams, NoneQuery, OverlayQueryParams, PixelateQueryParams, ResizeQueryParams, RotateQueryParams, SetLoopQueryParams, AnnmarieQueryParams};
 
 #[derive(Debug, Clone, Copy)]
 pub struct FifoPaths(u32, i32, i32);
@@ -44,6 +44,7 @@ impl<T: Serialize> FifoData<T> {
 pub enum FifoSend {
     _3dRotate(FifoData<NoneQuery>),
     AnnFrames(FifoData<NoneQuery>),
+    Annmarie(FifoData<AnnmarieQueryParams>),
     AhShit(FifoData<NoneQuery>),
     Audio(FifoData<AudioQueryParams>),
     AprilFools(FifoData<NoneQuery>),

@@ -1,9 +1,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Deserialize, Serialize, Debug)]
-pub struct AnnmarieBody {
+pub struct AnnmarieQueryParams {
     pub route: String,
     pub query_params: Vec<(String, String)>,
-    pub images: Vec<Vec<u8>>
+    pub image: Vec<u8>
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct AudioQueryParams {
