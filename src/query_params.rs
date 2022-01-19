@@ -73,6 +73,16 @@ pub enum ResizeMethod {
     Nearest,
     Gaussian,
 }
+impl ResizeMethod {
+    pub fn from_str(s: &str) -> Option<ResizeMethod> {
+        match s {
+            "nearest" => Some(ResizeMethod::Nearest),
+            "gaussian" => Some(ResizeMethod::Gaussian),
+            _ => None,
+        }
+    }
+}
+
 #[derive(Deserialize, Serialize, Debug)]
 pub struct RotateQueryParams {
     pub degrees: usize,
