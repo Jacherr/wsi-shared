@@ -1,8 +1,10 @@
 use std::string::ToString;
-use magick_rust::MagickError;
 use serde::{Serialize, Deserialize};
 use image::ImageError as CrateImageError;
 use zip::result::ZipError;
+
+#[cfg(target_os = "linux")]
+use magick_rust::MagickError;
 
 #[derive(Debug)]
 pub enum CmdError {
@@ -81,6 +83,7 @@ impl From<reqwest::Error> for ProcessingError {
         ProcessingError::Other(input.to_string())
     }
 }
+#[cfg(target_os = "linux")]
 impl From<MagickError> for ProcessingError {
     fn from(input: MagickError) -> ProcessingError {
         ProcessingError::ScriptError(input.to_string())
