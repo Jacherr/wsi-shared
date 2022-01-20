@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 pub struct AnnmarieQueryParams {
     pub route: String,
     pub query_params: Vec<(String, String)>,
-    pub image: Vec<u8>
+    pub images: Vec<Vec<u8>>
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct AudioQueryParams {
