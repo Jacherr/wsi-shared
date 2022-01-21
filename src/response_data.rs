@@ -19,3 +19,10 @@ pub struct Preprocessed {
     pub repeat: i32, // -1 for never
     pub audio: Option<Vec<u8>>,
 }
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct Stats {
+    pub current_requests: usize,
+    pub total_workers: usize,
+    pub uptime_ms: usize,
+}
