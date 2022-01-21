@@ -82,6 +82,7 @@ pub enum FifoSend {
     SetLoop(FifoData<SetLoopQueryParams>),
     Spin(FifoData<NoneQuery>),
     Spread(FifoData<NoneQuery>),
+    Stats(FifoData<NoneQuery>),
     Swirl(FifoData<NoneQuery>),
     Tehi(FifoData<NoneQuery>),
     Wall(FifoData<NoneQuery>),
