@@ -20,7 +20,7 @@ pub enum ProcessingError {
     ImagePropertyExtractionError,
     Restarting,
     UnsupportedFiletype,
-    WorkerDied,
+    WorkerDied(Option<String>),
     InputImageError(String),
     ScriptError(String),
     ParameterError(String),
@@ -34,7 +34,13 @@ impl ToString for ProcessingError {
             ProcessingError::ImagePropertyExtractionError => format!("Failed to extract image properties"),
             ProcessingError::Restarting => format!("The image service is restarting, please try again in a couple of minutes"),
             ProcessingError::UnsupportedFiletype => format!("Unsupported file type"),
-            ProcessingError::WorkerDied => format!("The worker handling your request crashed. Check the dimensions of your image. Otherwise, this is probably a bug and we would appreciate a report."),
+            ProcessingError::WorkerDied(e) => format!("The worker handling your request crashed. {}", {
+                if let Some(e) = e {
+                    format!("Reason: {}", e)
+                } else {
+                    format!("Reason: Unknown")
+                }
+            }),
             ProcessingError::InputImageError(e) => format!("Invalid image: {}", e),
             ProcessingError::ScriptError(e) => format!("Internal script error: {}\nThis is a bug. We would appreciate a report.", e),
             ProcessingError::ParameterError(e) => format!("Parameter error: {}", e),
