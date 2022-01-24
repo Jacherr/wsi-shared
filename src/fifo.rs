@@ -85,6 +85,7 @@ pub enum FifoSend {
     Stats(FifoData<NoneQuery>),
     Swirl(FifoData<NoneQuery>),
     Tehi(FifoData<NoneQuery>),
+    Uncaption(FifoData<NoneQuery>),
     Wall(FifoData<NoneQuery>),
     Wave(FifoData<NoneQuery>),
     Wormhole(FifoData<NoneQuery>),
