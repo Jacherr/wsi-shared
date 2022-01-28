@@ -1,6 +1,6 @@
-use std::string::ToString;
-use serde::{Serialize, Deserialize};
 use image::ImageError as CrateImageError;
+use serde::{Deserialize, Serialize};
+use std::string::ToString;
 use zip::result::ZipError;
 
 #[cfg(target_os = "linux")]
@@ -15,7 +15,7 @@ pub enum CmdError {
 
 #[derive(Debug, Clone, Eq, PartialEq, Deserialize, Serialize)]
 pub enum ProcessingError {
-    CorruptImage,
+    CorruptImage(String),
     Timeout,
     ImagePropertyExtractionError,
     Restarting,
@@ -24,27 +24,36 @@ pub enum ProcessingError {
     InputImageError(String),
     ScriptError(String),
     ParameterError(String),
-    Other(String)
+    Other(String),
 }
 impl ToString for ProcessingError {
     fn to_string(&self) -> String {
         match self {
-            ProcessingError::CorruptImage => format!("The input image is corrupt"),
+            ProcessingError::CorruptImage(e) => format!("The input image is corrupt: {}", e),
             ProcessingError::Timeout => format!("The operation timed out"),
-            ProcessingError::ImagePropertyExtractionError => format!("Failed to extract image properties"),
-            ProcessingError::Restarting => format!("The image service is restarting, please try again in a couple of minutes"),
+            ProcessingError::ImagePropertyExtractionError => {
+                format!("Failed to extract image properties")
+            }
+            ProcessingError::Restarting => {
+                format!("The image service is restarting, please try again in a couple of minutes")
+            }
             ProcessingError::UnsupportedFiletype => format!("Unsupported file type"),
-            ProcessingError::WorkerDied(e) => format!("The worker handling your request crashed. {}", {
-                if let Some(e) = e {
-                    format!("Reason: {}", e)
-                } else {
-                    format!("Reason: Unknown")
-                }
-            }),
+            ProcessingError::WorkerDied(e) => {
+                format!("The worker handling your request crashed. {}", {
+                    if let Some(e) = e {
+                        format!("Reason: {}", e)
+                    } else {
+                        format!("Reason: Unknown")
+                    }
+                })
+            }
             ProcessingError::InputImageError(e) => format!("Invalid image: {}", e),
-            ProcessingError::ScriptError(e) => format!("Internal script error: {}\nThis is a bug. We would appreciate a report.", e),
+            ProcessingError::ScriptError(e) => format!(
+                "Internal script error: {}\nThis is a bug. We would appreciate a report.",
+                e
+            ),
             ProcessingError::ParameterError(e) => format!("Parameter error: {}", e),
-            ProcessingError::Other(e) => format!("Unknown error: {}", e)
+            ProcessingError::Other(e) => format!("Unknown error: {}", e),
         }
     }
 }
@@ -53,19 +62,19 @@ impl From<CmdError> for ProcessingError {
         match input {
             CmdError::Timeout => ProcessingError::Timeout,
             CmdError::IoError(e) => ProcessingError::Other(e.to_string()),
-            CmdError::StdError(e) => ProcessingError::ScriptError(e)
+            CmdError::StdError(e) => ProcessingError::ScriptError(e),
         }
     }
 }
 impl From<CrateImageError> for ProcessingError {
     fn from(input: CrateImageError) -> ProcessingError {
         match input {
-            CrateImageError::Decoding(_) => ProcessingError::CorruptImage,
+            CrateImageError::Decoding(e) => ProcessingError::CorruptImage(e.to_string()),
             CrateImageError::Encoding(e) => ProcessingError::ScriptError(e.to_string()),
             CrateImageError::Parameter(e) => ProcessingError::ScriptError(e.to_string()),
             CrateImageError::IoError(e) => ProcessingError::ScriptError(e.to_string()),
             CrateImageError::Unsupported(e) => ProcessingError::ScriptError(e.to_string()),
-            CrateImageError::Limits(e) => ProcessingError::ScriptError(e.to_string())
+            CrateImageError::Limits(e) => ProcessingError::ScriptError(e.to_string()),
         }
     }
 }
