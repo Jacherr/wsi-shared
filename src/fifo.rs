@@ -1,6 +1,12 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
-use crate::query_params::{AudioQueryParams, BlurQueryParams, CaptionQueryParams, ConstructGifQueryParams, GhostQueryParams, GifSpeedQueryParams, HeartLocketTextQueryParams, ImageMagickEvalQueryParams, MemeQueryParams, MotivateQueryParams, NoneQuery, OverlayQueryParams, PixelateQueryParams, ResizeQueryParams, RotateQueryParams, SetLoopQueryParams, AnnmarieQueryParams};
+use crate::query_params::{
+    AnnmarieQueryParams, AudioQueryParams, BlurQueryParams, CaptionQueryParams,
+    ConstructGifQueryParams, GhostQueryParams, GifSpeedQueryParams, HeartLocketTextQueryParams,
+    ImageMagickEvalQueryParams, MemeQueryParams, MotivateQueryParams, NoneQuery,
+    OverlayQueryParams, PixelateQueryParams, ResizeQueryParams, RotateQueryParams,
+    SetLoopQueryParams,
+};
 
 #[derive(Debug, Clone, Copy)]
 pub struct FifoPaths(u32, i32, i32);
@@ -33,10 +39,7 @@ pub struct FifoData<T: Serialize> {
 }
 impl<T: Serialize> FifoData<T> {
     pub fn new(image: Vec<u8>, params: T) -> Self {
-        Self {
-            image,
-            params
-        }
+        Self { image, params }
     }
 }
 
@@ -56,6 +59,7 @@ pub enum FifoSend {
     Flash(FifoData<NoneQuery>),
     Flip(FifoData<NoneQuery>),
     Flop(FifoData<NoneQuery>),
+    FrameShift(FifoData<NoneQuery>),
     Frames(FifoData<NoneQuery>),
     Ghost(FifoData<GhostQueryParams>),
     GifLoop(FifoData<NoneQuery>),
@@ -89,21 +93,21 @@ pub enum FifoSend {
     Wall(FifoData<NoneQuery>),
     Wave(FifoData<NoneQuery>),
     Wormhole(FifoData<NoneQuery>),
-    Zoom(FifoData<NoneQuery>)
+    Zoom(FifoData<NoneQuery>),
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct WsiRequest {
     pub id: usize,
     pub premium_level: usize,
-    pub data: FifoSend
+    pub data: FifoSend,
 }
 impl WsiRequest {
     pub fn new(id: usize, premium_level: usize, data: FifoSend) -> Self {
         Self {
             id,
             premium_level,
-            data
+            data,
         }
     }
 }
