@@ -1,11 +1,11 @@
 use serde::{Deserialize, Serialize};
 
 use crate::query_params::{
-    AnnmarieQueryParams, AudioQueryParams, BlurQueryParams, CaptionQueryParams,
+    AnnmarieQueryParams, AudioQueryParams, BloomQueryParams, BlurQueryParams, CaptionQueryParams,
     ConstructGifQueryParams, GhostQueryParams, GifSpeedQueryParams, HeartLocketTextQueryParams,
-    ImageMagickEvalQueryParams, MemeQueryParams, MotivateQueryParams, NoneQuery,
+    ImageMagickEvalQueryParams, MemeQueryParams, MotivateQueryParams, NeonQueryParams, NoneQuery,
     OverlayQueryParams, PixelateQueryParams, ResizeQueryParams, RotateQueryParams,
-    SetLoopQueryParams,
+    SetLoopQueryParams, ZoomBlurQueryParams,
 };
 
 #[derive(Debug, Clone, Copy)]
@@ -94,6 +94,11 @@ pub enum FifoSend {
     Wave(FifoData<NoneQuery>),
     Wormhole(FifoData<NoneQuery>),
     Zoom(FifoData<NoneQuery>),
+    Neon(FifoData<NeonQueryParams>),
+    Bloom(FifoData<BloomQueryParams>),
+    FishEye(FifoData<NoneQuery>),
+    Paint(FifoData<NoneQuery>),
+    ZoomBlur(FifoData<ZoomBlurQueryParams>),
 }
 
 #[derive(Serialize, Deserialize, Debug)]

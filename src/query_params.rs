@@ -4,11 +4,11 @@ pub struct AnnmarieQueryParams {
     pub route: String,
     pub query_params: Vec<(String, String)>,
     pub images: Vec<Vec<u8>>,
-    pub preprocess: bool
+    pub preprocess: bool,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct AudioQueryParams {
-    pub effect: String
+    pub effect: String,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct BlurQueryParams {
@@ -38,7 +38,7 @@ pub struct GifSpeedQueryParams {
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct HeartLocketTextQueryParams {
-    pub text: String
+    pub text: String,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct ImageMagickEvalQueryParams {
@@ -94,3 +94,17 @@ pub struct SetLoopQueryParams {
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct NoneQuery {}
+#[derive(Deserialize, Serialize, Debug)]
+pub struct NeonQueryParams {
+    radius: usize,
+}
+#[derive(Deserialize, Serialize, Debug)]
+pub struct BloomQueryParams {
+    radius: usize,
+    brightness: usize,
+    sharpness: usize,
+}
+#[derive(Deserialize, Serialize, Debug)]
+pub struct ZoomBlurQueryParams {
+    factor: f64,
+}
