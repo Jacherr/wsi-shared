@@ -96,15 +96,15 @@ pub struct SetLoopQueryParams {
 pub struct NoneQuery {}
 #[derive(Deserialize, Serialize, Debug)]
 pub struct NeonQueryParams {
-    radius: usize,
+    pub radius: usize,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct BloomQueryParams {
-    radius: usize,
-    brightness: usize,
-    sharpness: usize,
+    pub radius: usize,
+    pub brightness: usize,
+    pub sharpness: usize,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct ZoomBlurQueryParams {
-    factor: f64,
+    pub factor: f64,
 }
