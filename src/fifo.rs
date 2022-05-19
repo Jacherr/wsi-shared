@@ -99,6 +99,7 @@ pub enum FifoSend {
     FishEye(FifoData<NoneQuery>),
     Paint(FifoData<NoneQuery>),
     ZoomBlur(FifoData<ZoomBlurQueryParams>),
+    Globe(FifoData<NoneQuery>),
 }
 
 #[derive(Serialize, Deserialize, Debug)]
