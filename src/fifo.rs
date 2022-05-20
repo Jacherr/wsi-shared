@@ -89,6 +89,7 @@ pub enum FifoSend {
     Reverse(FifoData<NoneQuery>),
     Rotate(FifoData<RotateQueryParams>),
     SetLoop(FifoData<SetLoopQueryParams>),
+    SpeechBubble(FifoData<NoneQuery>),
     Spin(FifoData<NoneQuery>),
     Spread(FifoData<NoneQuery>),
     Stats(FifoData<NoneQuery>),
