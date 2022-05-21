@@ -96,6 +96,7 @@ pub enum FifoSend {
     Swirl(FifoData<NoneQuery>),
     Tehi(FifoData<NoneQuery>),
     Uncaption(FifoData<NoneQuery>),
+    VideoToGif(FifoData<NoneQuery>),
     Wall(FifoData<NoneQuery>),
     Wave(FifoData<NoneQuery>),
     Wormhole(FifoData<NoneQuery>),

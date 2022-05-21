@@ -24,6 +24,7 @@ pub enum ProcessingError {
     InputImageError(String),
     ScriptError(String),
     ParameterError(String),
+    RequiresPatronTier(usize),
     Other(String),
 }
 impl ToString for ProcessingError {
@@ -53,6 +54,12 @@ impl ToString for ProcessingError {
                 e
             ),
             ProcessingError::ParameterError(e) => format!("Parameter error: {}", e),
+            ProcessingError::RequiresPatronTier(tier) => {
+                format!(
+                    "This operation requires you to be a tier {} patron or higher.",
+                    tier
+                )
+            }
             ProcessingError::Other(e) => format!("Unknown error: {}", e),
         }
     }
