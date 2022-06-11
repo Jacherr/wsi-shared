@@ -1,11 +1,11 @@
 use serde::{Deserialize, Serialize};
 
 use crate::query_params::{
-    AnnmarieQueryParams, AudioQueryParams, BloomQueryParams, BlurQueryParams, CaptionQueryParams,
+    AudioQueryParams, BloomQueryParams, BlurQueryParams, CaptionQueryParams,
     ConstructGifQueryParams, GhostQueryParams, GifSpeedQueryParams, HeartLocketTextQueryParams,
-    ImageMagickEvalQueryParams, MemeQueryParams, MotivateQueryParams, NeonQueryParams, NoneQuery,
-    OverlayQueryParams, PixelateQueryParams, ResizeQueryParams, RotateQueryParams,
-    SetLoopQueryParams, ZoomBlurQueryParams,
+    ImageMagickEvalQueryParams, MakesweetQueryParams, MemeQueryParams, MotivateQueryParams,
+    NeonQueryParams, NoneQuery, OverlayQueryParams, PixelateQueryParams, ResizeQueryParams,
+    RotateQueryParams, SetLoopQueryParams, ZoomBlurQueryParams,
 };
 
 #[derive(Debug, Clone, Copy)]
@@ -48,7 +48,6 @@ pub enum FifoSend {
     _3dRotate(FifoData<NoneQuery>),
     AhShit(FifoData<NoneQuery>),
     AnnFrames(FifoData<NoneQuery>),
-    Annmarie(FifoData<AnnmarieQueryParams>),
     AprilFools(FifoData<NoneQuery>),
     Audio(FifoData<AudioQueryParams>),
     Bloom(FifoData<BloomQueryParams>),
@@ -76,6 +75,7 @@ pub enum FifoSend {
     Invert(FifoData<NoneQuery>),
     Jpeg(FifoData<NoneQuery>),
     Magik(FifoData<NoneQuery>),
+    Makesweet(FifoData<MakesweetQueryParams>),
     Meme(FifoData<MemeQueryParams>),
     Motivate(FifoData<MotivateQueryParams>),
     Neon(FifoData<NeonQueryParams>),

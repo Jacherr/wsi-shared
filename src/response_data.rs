@@ -9,7 +9,7 @@ pub struct ImageInfo {
     pub frames: Option<usize>,
     pub frame_delays: Option<Vec<usize>>,
     pub repeat: Option<isize>,
-    pub comments: Vec<String>
+    pub comments: Vec<String>,
 }
 
 #[derive(Deserialize, Serialize, Debug)]

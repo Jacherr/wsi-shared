@@ -1,12 +1,5 @@
 use serde::{Deserialize, Serialize};
 #[derive(Deserialize, Serialize, Debug)]
-pub struct AnnmarieQueryParams {
-    pub route: String,
-    pub query_params: Vec<(String, String)>,
-    pub images: Vec<Vec<u8>>,
-    pub preprocess: bool,
-}
-#[derive(Deserialize, Serialize, Debug)]
 pub struct AudioQueryParams {
     pub effect: String,
 }
@@ -107,4 +100,10 @@ pub struct BloomQueryParams {
 #[derive(Deserialize, Serialize, Debug)]
 pub struct ZoomBlurQueryParams {
     pub factor: f64,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+pub struct MakesweetQueryParams {
+    pub template: String,
+    pub images: Vec<Vec<u8>>,
 }
