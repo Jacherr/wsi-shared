@@ -16,12 +16,6 @@ pub struct CompressQueryParams {
     pub level: Option<usize>,
 }
 #[derive(Deserialize, Serialize, Debug)]
-pub struct ConstructGifQueryParams {
-    pub delays: Vec<usize>,
-    pub repeat: i32, // -1 for never
-    pub audio: Option<Vec<u8>>,
-}
-#[derive(Deserialize, Serialize, Debug)]
 pub struct GhostQueryParams {
     pub depth: Option<usize>,
 }
