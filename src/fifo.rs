@@ -5,7 +5,7 @@ use crate::query_params::{
     GifSpeedQueryParams, HeartLocketTextQueryParams, ImageMagickEvalQueryParams,
     MakesweetQueryParams, MemeQueryParams, MotivateQueryParams, NeonQueryParams, NoneQuery,
     OverlayQueryParams, PixelateQueryParams, ResizeQueryParams, RotateQueryParams,
-    SetLoopQueryParams, ZoomBlurQueryParams,
+    SetLoopQueryParams, ZoomBlurQueryParams, PreprocessQueryParams,
 };
 
 #[derive(Debug, Clone, Copy)]
@@ -81,7 +81,7 @@ pub enum FifoSend {
     Overlay(FifoData<OverlayQueryParams>),
     Paint(FifoData<NoneQuery>),
     Pixelate(FifoData<PixelateQueryParams>),
-    Preprocess(FifoData<NoneQuery>),
+    Preprocess(FifoData<PreprocessQueryParams>),
     Printer(FifoData<NoneQuery>),
     Rainbow(FifoData<NoneQuery>),
     Resize(FifoData<ResizeQueryParams>),

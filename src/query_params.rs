@@ -50,6 +50,10 @@ pub struct PixelateQueryParams {
     pub downscaled_height: Option<usize>,
 }
 #[derive(Deserialize, Serialize, Debug)]
+pub struct PreprocessQueryParams {
+    pub frame0: bool
+}
+#[derive(Deserialize, Serialize, Debug)]
 pub struct ResizeQueryParams {
     pub width: Option<u32>,
     pub height: Option<u32>,
