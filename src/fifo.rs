@@ -50,6 +50,7 @@ pub enum FifoSend {
     AnnFrames(FifoData<NoneQuery>),
     AprilFools(FifoData<NoneQuery>),
     Audio(FifoData<AudioQueryParams>),
+    AudioPcm(FifoData<NoneQuery>),
     Bloom(FifoData<BloomQueryParams>),
     Blur(FifoData<BlurQueryParams>),
     Caption(FifoData<CaptionQueryParams>),
