@@ -55,6 +55,7 @@ pub enum FifoSend {
     Blur(FifoData<BlurQueryParams>),
     Caption(FifoData<CaptionQueryParams>),
     ConvertPng(FifoData<NoneQuery>),
+    DeepFry(FifoData<NoneQuery>),
     FishEye(FifoData<NoneQuery>),
     FixTransparency(FifoData<NoneQuery>),
     Flash(FifoData<NoneQuery>),
