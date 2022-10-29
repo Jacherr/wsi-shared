@@ -21,7 +21,7 @@ pub struct GhostQueryParams {
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct GifSpeedQueryParams {
-    pub delay: Option<usize>,
+    pub delay: Option<f64>,
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct HeartLocketTextQueryParams {
