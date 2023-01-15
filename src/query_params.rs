@@ -90,6 +90,10 @@ pub struct NeonQueryParams {
     pub radius: usize,
 }
 #[derive(Deserialize, Serialize, Debug)]
+pub struct UncaptionQueryParams {
+    pub lines: Option<usize>
+}
+#[derive(Deserialize, Serialize, Debug)]
 pub struct BloomQueryParams {
     pub radius: usize,
     pub brightness: usize,

@@ -5,7 +5,7 @@ use crate::query_params::{
     GifSpeedQueryParams, HeartLocketTextQueryParams, ImageMagickEvalQueryParams,
     MakesweetQueryParams, MemeQueryParams, MotivateQueryParams, NeonQueryParams, NoneQuery,
     OverlayQueryParams, PixelateQueryParams, ResizeQueryParams, RotateQueryParams,
-    SetLoopQueryParams, ZoomBlurQueryParams, PreprocessQueryParams,
+    SetLoopQueryParams, ZoomBlurQueryParams, PreprocessQueryParams, UncaptionQueryParams,
 };
 
 #[derive(Debug, Clone, Copy)]
@@ -94,7 +94,7 @@ pub enum FifoSend {
     Stats(FifoData<NoneQuery>),
     Swirl(FifoData<NoneQuery>),
     Tehi(FifoData<NoneQuery>),
-    Uncaption(FifoData<NoneQuery>),
+    Uncaption(FifoData<UncaptionQueryParams>),
     VideoToGif(FifoData<NoneQuery>),
     Wall(FifoData<NoneQuery>),
     Wave(FifoData<NoneQuery>),
