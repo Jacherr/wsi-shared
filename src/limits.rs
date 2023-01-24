@@ -13,22 +13,22 @@ lazy_static! {
         let mut limits: Vec<LimitData> = vec![];
         limits.push(LimitData {
             time: Duration::from_secs(40),
-            size: 384,
+            size: 512,
             frames: 150
         });
         limits.push(LimitData {
             time: Duration::from_secs(60),
-            size: 512,
+            size: 1024,
             frames: 200
         });
         limits.push(LimitData {
             time: Duration::from_secs(80),
-            size: 1024,
+            size: 2048,
             frames: 225
         });
         limits.push(LimitData {
             time: Duration::from_secs(120),
-            size: 2048,
+            size: 4096,
             frames: 250
         });
         limits
