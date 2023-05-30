@@ -1,6 +1,6 @@
 use image::ImageError as CrateImageError;
 use serde::{Deserialize, Serialize};
-use std::{string::ToString, num::ParseFloatError};
+use std::{string::ToString, num::ParseFloatError, num::ParseIntError};
 use zip::result::ZipError;
 
 #[cfg(target_os = "linux")]
