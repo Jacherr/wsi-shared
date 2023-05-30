@@ -91,7 +91,7 @@ pub struct NeonQueryParams {
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct UncaptionQueryParams {
-    pub lines: Option<usize>
+    pub lines: Option<String>
 }
 #[derive(Deserialize, Serialize, Debug)]
 pub struct BloomQueryParams {
