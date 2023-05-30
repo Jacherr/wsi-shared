@@ -111,3 +111,8 @@ impl From<MagickError> for ProcessingError {
         ProcessingError::ScriptError(input.to_string())
     }
 }
+impl From<ParseIntError> for ProcessingError {
+    fn from(input: ParseIntError) -> ProcessingError {
+        ProcessingError::ParameterError(input.to_string())
+    }
+}
