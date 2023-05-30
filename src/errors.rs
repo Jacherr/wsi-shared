@@ -1,6 +1,6 @@
 use image::ImageError as CrateImageError;
 use serde::{Deserialize, Serialize};
-use std::string::ToString;
+use std::{string::ToString, num::ParseFloatError};
 use zip::result::ZipError;
 
 #[cfg(target_os = "linux")]
@@ -113,6 +113,11 @@ impl From<MagickError> for ProcessingError {
 }
 impl From<ParseIntError> for ProcessingError {
     fn from(input: ParseIntError) -> ProcessingError {
+        ProcessingError::ParameterError(input.to_string())
+    }
+}
+impl From<ParseFloatError> for ProcessingError {
+    fn from(input: ParseFloatError) -> ProcessingError {
         ProcessingError::ParameterError(input.to_string())
     }
 }
