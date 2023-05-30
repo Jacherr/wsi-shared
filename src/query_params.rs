@@ -109,3 +109,7 @@ pub struct MakesweetQueryParams {
     pub template: String,
     pub images: Vec<Vec<u8>>,
 }
+#[derive(Deserialize, Serialize, Debug)]
+pub struct CropQueryParams {
+    pub expression: String
+}
