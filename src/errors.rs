@@ -3,8 +3,6 @@ use serde::{Deserialize, Serialize};
 use std::{string::ToString, num::ParseFloatError, num::ParseIntError};
 use zip::result::ZipError;
 
-#[cfg(target_os = "linux")]
-use magick_rust::MagickError;
 
 #[derive(Debug)]
 pub enum CmdError {
@@ -103,12 +101,6 @@ impl From<std::io::Error> for ProcessingError {
 impl From<reqwest::Error> for ProcessingError {
     fn from(input: reqwest::Error) -> ProcessingError {
         ProcessingError::Other(input.to_string())
-    }
-}
-#[cfg(target_os = "linux")]
-impl From<MagickError> for ProcessingError {
-    fn from(input: MagickError) -> ProcessingError {
-        ProcessingError::ScriptError(input.to_string())
     }
 }
 impl From<ParseIntError> for ProcessingError {
