@@ -25,12 +25,6 @@ pub enum ProcessingError {
     RequiresPatronTier(usize),
     Other(String),
 }
-impl std::fmt::Display for ProcessingError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-         write!(f, "{}", self.to_string())
-    }
-}
-impl std::error::Error for ProcessingError {}
 impl ToString for ProcessingError {
     fn to_string(&self) -> String {
         match self {
@@ -66,6 +60,11 @@ impl ToString for ProcessingError {
             }
             ProcessingError::Other(e) => format!("Unknown error: {}", e),
         }
+    }
+}
+impl std::fmt::Display for ProcessingError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+         write!(f, "{}", self.to_string())
     }
 }
 impl From<CmdError> for ProcessingError {
@@ -119,3 +118,4 @@ impl From<ParseFloatError> for ProcessingError {
         ProcessingError::ParameterError(input.to_string())
     }
 }
+impl std::error::Error for ProcessingError {}
