@@ -25,6 +25,7 @@ pub enum ProcessingError {
     RequiresPatronTier(usize),
     Other(String),
 }
+impl std::error::Error for ParseError {}
 impl ToString for ProcessingError {
     fn to_string(&self) -> String {
         match self {
