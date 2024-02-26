@@ -25,20 +25,20 @@ pub enum ProcessingError {
     RequiresPatronTier(usize),
     Other(String),
 }
-impl ToString for ProcessingError {
-    fn to_string(&self) -> String {
-        match self {
-            ProcessingError::CorruptImage(e) => format!("The input image is corrupt: {}", e),
-            ProcessingError::Timeout => format!("The operation timed out"),
+impl std::fmt::Display for ProcessingError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+         match self {
+            ProcessingError::CorruptImage(e) => write!(f, "The input image is corrupt: {}", e),
+            ProcessingError::Timeout => write!(f, "The operation timed out"),
             ProcessingError::ImagePropertyExtractionError => {
-                format!("Failed to extract image properties")
+                write!(f, "Failed to extract image properties")
             }
             ProcessingError::Restarting => {
-                format!("The image service is restarting, please try again in a couple of minutes")
+                write!(f, "The image service is restarting, please try again in a couple of minutes")
             }
-            ProcessingError::UnsupportedFiletype => format!("Unsupported file type"),
+            ProcessingError::UnsupportedFiletype => write!(f, "Unsupported file type"),
             ProcessingError::WorkerDied(e) => {
-                format!("The worker handling your request crashed. {}", {
+                write!(f, "The worker handling your request crashed. {}", {
                     if let Some(e) = e {
                         format!("Reason: {}", e)
                     } else {
@@ -46,25 +46,22 @@ impl ToString for ProcessingError {
                     }
                 })
             }
-            ProcessingError::InputImageError(e) => format!("Invalid image: {}", e),
-            ProcessingError::ScriptError(e) => format!(
+            ProcessingError::InputImageError(e) => write!(f, "Invalid image: {}", e),
+            ProcessingError::ScriptError(e) => write!(
+                f,
                 "Internal script error: {}\nThis is a bug. We would appreciate a report.",
                 e
             ),
-            ProcessingError::ParameterError(e) => format!("Parameter error: {}", e),
+            ProcessingError::ParameterError(e) => write!(f, "Parameter error: {}", e),
             ProcessingError::RequiresPatronTier(tier) => {
-                format!(
+                write!(
+                    f,
                     "This operation requires you to be a tier {} patron or higher.",
                     tier
                 )
             }
-            ProcessingError::Other(e) => format!("Unknown error: {}", e),
+            ProcessingError::Other(e) => write!(f, "Unknown error: {}", e),
         }
-    }
-}
-impl std::fmt::Display for ProcessingError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-         write!(f, "{}", self.to_string())
     }
 }
 impl From<CmdError> for ProcessingError {
