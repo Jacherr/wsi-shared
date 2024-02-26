@@ -25,7 +25,7 @@ pub enum ProcessingError {
     RequiresPatronTier(usize),
     Other(String),
 }
-impl Display for ProcessingError {
+impl std::fmt::Display for ProcessingError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
          write!(f, "{}", self.to_string())
     }
